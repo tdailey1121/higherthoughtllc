@@ -1,23 +1,28 @@
 function enterLightbulb() {
   const bulb = document.getElementById("bulb");
   const flare = document.querySelector(".flare");
+  const ripple = document.querySelector(".ripple");
 
-  // Position flare at the center of the bulb
+  // Position flare
   const rect = bulb.getBoundingClientRect();
-  flare.style.left = `${rect.left + rect.width / 2 - 75}px`;
-  flare.style.top = `${rect.top + rect.height / 2 - 75}px`;
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-  // Trigger animation
+  flare.style.left = `${centerX - 75}px`;
+  flare.style.top = `${centerY - 75}px`;
   flare.classList.add("show");
+
+  // Position ripple
+  ripple.style.left = `${centerX - 100}px`;
+  ripple.style.top = `${centerY - 100}px`;
+  ripple.classList.add("show");
+
+  // Fade screen
   document.body.classList.add("fade-out");
 
-  // Navigate after delay
+  // Cleanup ripple class after animation
   setTimeout(() => {
+    ripple.classList.remove("show");
     window.location.href = "about.html";
   }, 1500);
-}
-
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  nav.classList.toggle('show');
 }
