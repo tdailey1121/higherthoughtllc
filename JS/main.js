@@ -2,17 +2,14 @@ function enterLightbulb() {
   const flare = document.querySelector(".flare");
   const ripple = document.querySelector(".ripple-overlay");
 
-  // Trigger animations
-  flare.classList.add("flare-animate");
-  ripple.classList.add("ripple-animate");
+  flare.classList.add("show");
+  ripple.classList.add("show");
 
-  // Wait for animation to finish, then navigate
+  setTimeout(() => {
+    document.body.classList.add("fade-out");
+  }, 800); // allow the ripple to peak before fading screen
+
   setTimeout(() => {
     window.location.href = "about.html";
-  }, 1200); // Adjust this to match your animation timing
-}
-
-function toggleMenu() {
-  const nav = document.getElementById("navLinks");
-  nav.classList.toggle("show");
+  }, 1600); // adjust as needed for smooth transition
 }
