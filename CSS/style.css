@@ -314,3 +314,30 @@ body.fade-out {
   transition: opacity 0.6s ease-in;
   opacity: 0;
 }
+
+/* Image styling within the symbolism section */
+.symbol-content .symbol-img, .symbolism .about-boy {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  margin: 2rem auto 0;
+  height: auto;
+  border-radius: 1rem;
+  filter: drop-shadow(0 0 20px rgba(255, 214, 10, 0.35));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.symbol-content .symbol-img:hover,
+.symbolism .about-boy:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 35px rgba(255, 214, 10, 0.6));
+}
+
+/* Optional mobile tweak */
+@media screen and (max-width: 768px) {
+  .symbol-content .symbol-img,
+  .symbolism .about-boy {
+    max-width: 220px;
+    margin-top: 1.5rem;
+  }
+}
