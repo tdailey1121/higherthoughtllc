@@ -1,248 +1,35 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #0d0024;
-  overflow-x: hidden;
-  color: #fff;
+:root{
+  --bg:#05070d;
+  --fg:#f4f7ff;
+  --muted:#b6c1ff;
+  --glow: 0 0 24px rgba(173,196,255,.45), 0 0 64px rgba(113,151,255,.25);
 }
 
-/* Starry Background Layer */
-.universe-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle at center, #1f003b, #0d0024);
-  background-image: url('../Assets/images/stars-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--fg); background: radial-gradient(1200px 800px at 50% 30%, #0b1230 0%, #05070d 60%, #000 100%),
+    url('Assets/stars.svg') center/cover no-repeat fixed;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-/* Lightbulb + Slogan Centering */
-.centerpiece {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  animation: fadeIn 2s ease-in;
+.site-header{position:fixed; inset-block-start:0; inset-inline:0; backdrop-filter:blur(10px); background:rgba(5,7,13,.3); z-index:10}
+.nav{max-width:1000px; margin:auto; display:flex; align-items:center; gap:24px; padding:12px 16px}
+.brand{font-weight:700; letter-spacing:.4px; color:var(--fg); text-decoration:none}
+.nav-links{margin:0 0 0 auto; padding:0; list-style:none; display:flex; gap:16px}
+.nav-links a{color:var(--muted); text-decoration:none}
+.nav-links a[aria-current="page"]{color:var(--fg)}
+
+.hero{min-height:100dvh; display:grid; place-items:center; text-align:center; padding-inline:16px}
+.tagline{font-size:clamp(1.25rem, 2.5vw + 1rem, 2.5rem); font-weight:700; margin:96px 0 24px; text-shadow:var(--glow)}
+
+.portal{position:relative; display:inline-grid; place-items:center; text-decoration:none; outline-offset:6px}
+.portal img{display:block; filter:drop-shadow(0 10px 40px rgba(130,160,255,.35))}
+.pulse{
+  position:absolute; inset: -12%;
+  border-radius:999px; box-shadow: 0 0 80px 30px rgba(138,180,255,.15);
+  animation: throb 3.6s ease-in-out infinite;
 }
+@keyframes throb{0%,100%{opacity:.55; transform:scale(.98)}50%{opacity:1; transform:scale(1.03)}}
 
-.glow-bulb {
-  width: 150px;
-  height: auto;
-  cursor: pointer;
-  filter: drop-shadow(0 0 20px #ffd60a);
-  transition: transform 0.3s ease;
-}
-
-.glow-bulb:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 30px #ffee80);
-}
-
-.slogan {
-  font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
-  color: #ffd60a;
-  margin-top: 1.5rem;
-  text-shadow: 0 0 10px #ffd60a;
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.98); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* General Reset */
-body, h1, h2, p, ul {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* NAVIGATION BAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #5f48ea;
-  transition: 0.3s ease-in-out;
-}
-
-.nav-links li a:hover::after,
-.nav-links li a.active::after {
-  width: 100%;
-}
-
-.logo {
-  width: 70px;
-  height: auto;
-  border-radius: 1px;
-}
-
-/* MOBILE STYLES */
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .hamburger {
-    display: block;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 999;
-    color: #333;
-  }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 1rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 1rem;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 998;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .logo {
-    width: 60px;
-    height: auto;
-  }
-}
-
-/* Flare Animation */
-.flare {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 10;
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.flare.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(6);
-  animation: flareExpand 1s ease-out forwards;
-}
-
-@keyframes flareExpand {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(6);
-  }
-}
-
-/* Ripple Full-Page Overlay */
-.ripple-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 10%, transparent 80%);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 20;
-  transition: opacity 0.5s ease;
-}
-
-.ripple-overlay.show {
-  opacity: 1;
-  animation: rippleFlash 0.8s ease-out forwards;
-}
-
-@keyframes rippleFlash {
-  0% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Gradient Transition Overlay */
-.gradient-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(78, 121, 255, 0.6), rgba(226, 102, 255, 0.6));
-  opacity: 0;
-  pointer-events: none;
-  z-index: 30;
-  transition: opacity 0.8s ease-in;
-}
-
-.gradient-transition.show {
-  opacity: 1;
-}
-
-/* Optional: Fade out effect on body */
-body.fade-out {
-  transition: opacity 0.6s ease-in;
-  opacity: 0;
-}
+.site-footer{position:relative; z-index:1; text-align:center; padding:24px 16px; color:#9fb1ff}
