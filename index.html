@@ -1,62 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Higher Thought EnT — Think higher and follow the lightbulbs!</title>
-  <meta name="description" content="Higher Thought EnT — a neo-spiritual creative portal for etymology, truth-seeking, meditation, storytelling, and conscious creativity." />
-  <link rel="icon" href="Assets/images/stars-bg.jpg" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Higher Thought EnT" />
-  <meta property="og:description" content="Think higher and follow the lightbulbs!" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="Assets/images/glowing-lightbulb.png" />
-  <meta property="og:url" content="https://tdailey1121.github.io/higherthoughtllc/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="preload" as="image" href="Assets/images/glowing-lightbulb.png" imagesrcset="Assets/images/glowing-lightbulb.png 1x" />
-  <link rel="stylesheet" href="CSS/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Higher Thought EnT</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Poppins&display=swap" rel="stylesheet">
 </head>
-<body class="home">
-  <header class="site-header" aria-label="Main">
-    <nav class="nav">
-      <a class="brand" href="index.html" aria-label="Higher Thought Home">Higher Thought</a>
-      <ul class="nav-links">
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="thought.html">Thought Zone</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="landing">
 
-  <main class="hero" id="top">
-    <h1 class="tagline">Think higher and follow the lightbulbs!</h1>
+  <!-- Starry Background -->
+  <div class="universe-bg"></div>
 
-    <!-- The bulb is the portal -->
-    <a class="portal" href="about.html" aria-label="Enter Higher Thought">
-      <picture>
-        <source srcset="Assets/images/glowing-lightbulb.png" type="image/webp" />
-        <img
-          src="Assets/bulb.png"
-          alt="Glowing lightbulb portal to Higher Thought"
-          width="420" height="420"
-          loading="eager" decoding="async"
-        />
-      </picture>
-      <span class="pulse" aria-hidden="true"></span>
-    </a>
-  </main>
+  <!-- Lightbulb Centerpiece -->
+  <div class="centerpiece">
+    <img src="Assets/images/glowing-lightbulb.png" alt="Enter Higher Thought" class="glow-bulb" id="bulb" onclick="enterLightbulb()" />
+    <div class="flare"></div>
+    <h1 class="slogan">Think higher and follow the lightbulbs!</h1>
+  </div>
 
-  <footer class="site-footer">
-    <small>© <span id="y"></span> Higher Thought EnT</small>
-  </footer>
+  <!-- Ripple and Gradient Overlay -->
+  <div class="ripple-overlay"></div>
+  <div class="gradient-transition" id="gradientOverlay"></div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script src="JS/main.js"></script>
 </body>
 </html>
 
