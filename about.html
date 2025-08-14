@@ -1,64 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About | Higher Thought EnT</title>
-  <link rel="stylesheet" href="CSS/style.css" />
+  <meta name="description" content="Higher Thought EnT — etymology, truth-seeking, meditation, storytelling, and conscious creativity." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="Assets/favicon.png" />
   <link rel="stylesheet" href="CSS/about_page_style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Poppins&display=swap" rel="stylesheet">
 </head>
-<body class="about-page">
+<body class="about-ethereal">
+  <header class="topbar" role="banner">
+    <a class="logo-link" href="index.html" aria-label="Higher Thought home">
+      <img src="Assets/logo.jpg" alt="Higher Thought EnT logo" width="56" height="56" />
+    </a>
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="artists.html">Thought Zone</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <img src="Assets/images/logo.jpg" alt="Logo" class="logo">
-</header>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="about.html" aria-current="page">About</a></li>
+        <li><a href="thought.html">Thought Zone</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Hero Section with Video -->
- <div class="video-wrapper">
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/mMlQ-5HES4g" 
-      title="What is Higher Thought" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
+  <!-- Background visual layers: stars + floating orbs -->
+  <div class="bg-layer stars" aria-hidden="true"></div>
+  <div class="bg-layer orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
   </div>
-</div>
 
-  <!-- Mission Statement -->
-  <section class="mission">
-    <h2>Mission Statement</h2>
-    <p>
-      Higher Thought EnT is more than a brand—it’s a movement. Rooted in the power of Etymology and the pursuit of Truth, we explore the deep questions of existence through meditation, storytelling, philosophy, and conscious creativity. Thinking higher isn’t just a mindset—it’s a lifestyle. From non-traditional meditation journeys to immersive experiences designed to awaken the soul, our mission is to help you reconnect with your inner wisdom, elevate your awareness, and light the way forward—one thought at a time.
-    </p>
-  </section>
+  <main class="container" id="main" role="main">
+    <article class="glass-card">
+      <header class="card-head">
+        <h1>What is Higher Thought?</h1>
+        <p class="lede">A portal for etymology, quiet curiosity, storytelling, and conscious creativity.</p>
+      </header>
 
-  <!-- Lightbulb Symbolism -->
-<section class="symbolism">
-  <div class="symbol-content">
-    <img src="Assets/images/boy.webp" alt="Boy holding lightbulb" class="symbol-img" />
-    <div class="symbol-text">
-    <h2>What the Lightbulb Symbolizes</h2>
-    <p>
-      Light bulbs symbolize the power to illuminate—ideas, feelings, actions, or truths that shine from a grounded place. They represent sparks of clarity, moments of inspiration, and energy that radiates positivity wherever it flows. At Higher Thought, we believe those sparks are divine breadcrumbs. Embrace the light. Be the light. And follow the light bulbs—they’ll guide you through the darkness and into deeper understanding.
-    </p>
-    </div>
-  </div>
-</section>
-  
-<script src="JS/main.js"></script>
-  
+      <section class="content">
+        <p>
+          Higher Thought EnT invites gentle curiosity and mindful inquiry. The lightbulb is not merely an icon — it is a threshold: ideas illuminated, language explored, and quiet practices that guide us toward clearer thinking.
+        </p>
+
+        <p>
+          We combine etymology, meditation prompts, stories, and creative practice to create a space where small insights compound into meaningful shifts. Step through slowly — the light is warm.
+        </p>
+
+        <div class="video-wrap">
+          <div class="ratio">
+            <iframe src="https://www.youtube.com/embed/mMlQ-5HES4g"
+                    title="What is Higher Thought"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="caption">Video: What is Higher Thought</p>
+        </div>
+
+        <footer class="card-cta">
+          <a class="btn-ethereal" href="thought.html">Enter the Thought Zone</a>
+        </footer>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-foot" role="contentinfo">
+    <small>© <span id="year"></span> Higher Thought EnT</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
-
