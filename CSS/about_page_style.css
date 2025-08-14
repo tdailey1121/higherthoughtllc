@@ -1,116 +1,163 @@
-
-/* === Higher Thought Inspired About Page === */
-
-/* Base Style */
-body.about-page {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(145deg, #f3f3ff, #d5dbff);
-  color: #1a1a1a;
-  padding-bottom: 4rem;
-  overflow-x: hidden;
+/* Ethereal About page styles */
+:root{
+  --bg-1: #070814;
+  --bg-2: #0b0f1a;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.035);
+  --accent: rgba(132, 145, 255, 0.95);
+  --muted: rgba(210,220,255,0.8);
+  --card-max: 920px;
+  --blur: 18px;
+  --shadow: 0 12px 40px rgba(8,10,20,0.6);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
 }
 
-/* Subtle Background Glow Particles (optional future layer) */
-body.about-page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('../Assets/images/subtle-stars.png') repeat;
+/* base reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--muted);
+  background:
+    radial-gradient(1200px 600px at 10% 20%, rgba(70,80,140,0.08), transparent 12%),
+    radial-gradient(900px 500px at 85% 80%, rgba(100,60,140,0.06), transparent 14%),
+    linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  min-height:100dvh;
+}
+
+/* Top bar */
+.topbar{
+  position:sticky; top:0; z-index:30;
+  display:flex; gap:12px; align-items:center; justify-content:space-between;
+  padding:12px 18px; backdrop-filter: blur(6px) saturate(1.05);
+  background: linear-gradient(180deg, rgba(6,8,14,0.35), rgba(6,8,14,0.12));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.logo-link img{border-radius:12px; display:block}
+.site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:18px; align-items:center}
+.site-nav a{color:var(--muted); text-decoration:none; font-weight:500; font-size:0.95rem; padding:6px 8px; border-radius:8px}
+.site-nav a.active, .site-nav a[aria-current="page"]{color:var(--accent); background: rgba(68,81,255,0.06)}
+
+/* background layers */
+.bg-layer{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+}
+
+/* subtle star texture layer - use a low-contrast svg */
+.bg-layer.stars{
+  background-image: url('../Assets/soft-stars.svg');
   background-size: cover;
-  opacity: 0.04;
-  z-index: -1;
+  opacity:0.14;
+  transform: translateZ(0);
+  mix-blend-mode: screen;
+  filter: blur(0.6px) saturate(1.1);
 }
 
-/* Navigation (unchanged) */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* floating soft orbs */
+.bg-layer.orbs{ display:block; }
+.orb{
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(30px) saturate(1.1);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+.orb-1{ width:260px; height:260px; left:6%; top:18%; background: radial-gradient(circle at 35% 30%, rgba(140,170,255,0.95), rgba(90,80,200,0.12)); animation: float1 10s ease-in-out infinite; }
+.orb-2{ width:180px; height:180px; right:8%; top:8%; background: radial-gradient(circle at 40% 35%, rgba(255,210,230,0.85), rgba(160,120,200,0.08)); animation: float2 12s ease-in-out infinite; }
+.orb-3{ width:140px; height:140px; left:44%; top:70%; background: radial-gradient(circle at 50% 50%, rgba(180,255,230,0.85), rgba(80,140,140,0.04)); animation: float3 14s ease-in-out infinite; }
+
+@keyframes float1{ 0%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+@keyframes float2{ 0%{transform:translateY(0) scale(.98)}50%{transform:translateY(-10px) scale(1.01)}100%{transform:translateY(0) scale(.98)}}
+@keyframes float3{ 0%{transform:translateY(0) scale(1)}50%{transform:translateY(-22px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
+
+/* main container that centers content above the background */
+.container{
+  position:relative;
+  z-index:10;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:56px 20px 120px;
+  min-height: calc(100dvh - 120px);
 }
 
-/* Mission Section */
-.mission, .symbolism {
-  max-width: 950px;
-  margin: 4rem auto;
-  padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 24px;
-  box-shadow: 0 0 30px rgba(170, 170, 255, 0.2);
-  backdrop-filter: blur(6px);
+/* glass card visual */
+.glass-card{
+  width:100%;
+  max-width: var(--card-max);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 3vw, 40px);
+  backdrop-filter: blur(var(--blur)) saturate(1.05);
+  overflow: hidden;
 }
 
-/* Section Headings */
-.mission h2, .symbolism h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #5e4fff;
-  text-align: center;
-  text-shadow: 0 0 8px rgba(94, 79, 255, 0.2);
+/* header area inside card */
+.card-head h1{
+  margin:0 0 8px;
+  font-family: "Playfair Display", serif;
+  font-weight:700;
+  color: #eef2ff;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: -0.6px;
+  text-shadow: 0 6px 30px rgba(100,120,255,0.12);
+}
+.lede{
+  margin:0 0 18px;
+  color: rgba(210,220,255,0.92);
+  font-weight:400;
+  font-size:1.05rem;
 }
 
-/* Paragraphs */
-.mission p, .symbolism p {
-  font-size: 1.15rem;
-  line-height: 1.9;
-  color: #333;
-  text-align: justify;
-  letter-spacing: 0.2px;
+/* content paragraphs */
+.content p{
+  line-height:1.8;
+  color: rgba(200,210,255,0.9);
+  font-size: clamp(.95rem, 1vw + .85rem, 1.05rem);
+  margin: 12px 0;
 }
 
-/* Quote Style */
-.higher-quote {
-  font-family: 'Cinzel', serif;
-  font-style: italic;
-  font-size: 1.5rem;
-  color: #6c5ce7;
-  text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(108, 92, 231, 0.1);
+/* embedded video with rounded container */
+.video-wrap{ margin-top:20px; margin-bottom:10px; }
+.ratio{
+  position:relative; width:100%; padding-top:56.25%;
+  border-radius:16px; overflow:hidden;
+  border:1px solid rgba(255,255,255,0.03); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 30px rgba(10,10,26,0.45);
 }
+.ratio iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
 
-/* Symbolism Image/Text Combo */
-.symbol-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding-top: 1rem;
+/* caption under video */
+.caption{ font-size:.95rem; color: rgba(190,200,255,0.82); margin-top:10px }
+
+/* cta */
+.card-cta{ margin-top:22px; display:flex; gap:12px; align-items:center; }
+.btn-ethereal{
+  display:inline-block; padding:12px 18px; border-radius:999px;
+  background: linear-gradient(90deg, rgba(90,110,255,0.95), rgba(115,200,255,0.88));
+  color: #071126; text-decoration:none; font-weight:600;
+  box-shadow: 0 12px 36px rgba(68,81,255,0.16), inset 0 -2px 8px rgba(255,255,255,0.05);
+  transform: translateZ(0);
 }
+.btn-ethereal:focus, .btn-ethereal:hover{ transform: translateY(-3px) scale(1.01); outline: none; }
 
-.symbol-img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-  transition: transform 0.4s ease;
+/* footer */
+.site-foot{ text-align:center; color: rgba(190,200,255,0.6); padding:28px 16px; z-index:10 }
+
+/* responsive tweaks */
+@media (max-width:920px){
+  .orb-1{ left:-6%; top:8%; width:200px; height:200px; }
+  .container{ padding:36px 16px 80px }
+  .glass-card{ padding:20px }
 }
-
-.symbol-img:hover {
-  transform: scale(1.02);
-}
-
-.symbol-text {
-  max-width: 600px;
-  color: #333;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .symbol-content {
-    flex-direction: column;
-    text-align: center;
-  }
+@media (max-width:520px){
+  .site-nav{ display:none } /* keep header light on small screens; optionally add mobile nav later */
+  .card-head h1{ font-size:1.4rem }
+  .lede{ font-size:.98rem }
 }
