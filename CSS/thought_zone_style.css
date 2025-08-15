@@ -1,10 +1,12 @@
-/* Ethereal About page styles */
+/* Ethereal Thought Zone Styles - Matches About Page */
+
+/* Root variables */
 :root{
   --bg-1: #070814;
   --bg-2: #0b0f1a;
   --glass: rgba(255,255,255,0.06);
   --glass-2: rgba(255,255,255,0.035);
-  --accent: rgba(132, 145, 255, 0.95);
+  --accent: rgba(132, 145, 255,0.95);
   --muted: rgba(210,220,255,0.8);
   --card-max: 920px;
   --blur: 18px;
@@ -12,7 +14,7 @@
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
 }
 
-/* base reset */
+/* Base reset */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -41,12 +43,12 @@ body{
 .site-nav a{color:var(--muted); text-decoration:none; font-weight:500; font-size:0.95rem; padding:6px 8px; border-radius:8px}
 .site-nav a.active, .site-nav a[aria-current="page"]{color:var(--accent); background: rgba(68,81,255,0.06)}
 
-/* background layers */
+/* Background layers */
 .bg-layer{
   position:fixed; inset:0; z-index:0; pointer-events:none;
 }
 
-/* subtle star texture layer - use a low-contrast svg */
+/* Stars */
 .bg-layer.stars{
   background-image: url('../Assets/soft-stars.svg');
   background-size: cover;
@@ -56,7 +58,7 @@ body{
   filter: blur(0.6px) saturate(1.1);
 }
 
-/* floating soft orbs */
+/* Floating soft orbs */
 .bg-layer.orbs{ display:block; }
 .orb{
   position: absolute;
@@ -74,138 +76,107 @@ body{
 @keyframes float2{ 0%{transform:translateY(0) scale(.98)}50%{transform:translateY(-10px) scale(1.01)}100%{transform:translateY(0) scale(.98)}}
 @keyframes float3{ 0%{transform:translateY(0) scale(1)}50%{transform:translateY(-22px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
 
-/* Thought Zone Background */
-.thought-zone-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle at top, #0f002b, #0c0020);
-  z-index: -2;
+/* Main container that centers content */
+.container{
+  position:relative;
+  z-index:10;
+  display:flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items:center;
+  padding:56px 20px 120px;
+  width:90%;
+  max-width: var(--card-max);
+  margin:0 auto;
 }
 
-/* UFO Particle Layer */
-.ufo-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  background: url('../Assets/images/ufo-particles.png') repeat;
-  animation: moveParticles 60s linear infinite;
-}
-
-@keyframes moveParticles {
-  0% { background-position: 0 0; }
-  100% { background-position: 2000px 1000px; }
-}
-
-/* Main container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 0;
-}
-
-/* Section styling */
-.thought-section {
-  margin-bottom: 120px;
-  padding: 60px 40px;
-  background: rgba(255, 255, 255, 0.02);
+/* Glass Card (reuse for each section) */
+.glass-card{
+  width:100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 20px;
-  backdrop-filter: blur(15px) saturate(1.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  position: relative;
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 3vw, 40px);
+  backdrop-filter: blur(var(--blur)) saturate(1.05);
   overflow: hidden;
+  margin-bottom:60px;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.thought-section:hover {
+.glass-card:hover{
   transform: translateY(-5px);
   box-shadow: 0 20px 50px rgba(0,0,0,0.7);
 }
 
-/* Section Titles & Text */
-.thought-section h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 2rem;
-  color: #a3d0ff;
-  margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(163,208,255,0.5);
+/* Card headers & text */
+.card-head h1, .glass-card h2{
+  font-family: "Playfair Display", serif;
+  font-weight:700;
+  color: #eef2ff;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom:8px;
+  letter-spacing: -0.6px;
+  text-shadow: 0 6px 30px rgba(100,120,255,0.12);
 }
 
-.thought-section p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  color: rgba(210,220,255,0.9);
+.lede, .glass-card p{
+  color: rgba(210,220,255,0.92);
+  font-weight:400;
+  font-size:1.05rem;
+  line-height:1.8;
+  margin:12px 0;
 }
 
-/* Video container inside each section */
-.video-wrap {
-  width: 100%;
-  max-width: 100%;
-  margin: 20px 0;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 8px 24px rgba(68,81,255,0.2);
+/* Video container */
+.ratio{
+  position:relative; width:100%; padding-top:56.25%;
+  border-radius:16px; overflow:hidden;
+  border:1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 30px rgba(10,10,26,0.45);
+  margin:20px 0;
+}
+.ratio iframe{
+  position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
 }
 
-.video-wrap iframe {
-  width: 100%;
-  height: 400px;
-  border: none;
-  display: block;
-}
-
-/* CTA buttons for interactive elements */
-.btn-ethereal {
-  display: inline-block;
-  padding: 12px 22px;
-  border-radius: 999px;
+/* CTA Buttons */
+.btn-ethereal{
+  display:inline-block; padding:12px 18px; border-radius:999px;
   background: linear-gradient(90deg, rgba(90,110,255,0.95), rgba(115,200,255,0.88));
-  color: #071126;
-  font-weight: 600;
-  text-decoration: none;
+  color: #071126; text-decoration:none; font-weight:600;
   box-shadow: 0 12px 36px rgba(68,81,255,0.16), inset 0 -2px 8px rgba(255,255,255,0.05);
+  transform: translateZ(0);
   transition: transform 0.3s ease;
 }
+.btn-ethereal:hover{ transform: translateY(-3px) scale(1.01); }
 
-.btn-ethereal:hover {
-  transform: translateY(-3px) scale(1.02);
-}
-
-/* Floating UFOs animation (optional overlay) */
-.ufo {
-  position: absolute;
-  width: 60px;
-  height: 30px;
+/* Optional UFO overlay (can be commented out) */
+.ufo{
+  position:absolute;
+  width:60px;
+  height:30px;
   background: url('../Assets/images/ufo.png') no-repeat center/contain;
   animation: floatUFO 20s linear infinite;
 }
 
-@keyframes floatUFO {
+@keyframes floatUFO{
   0% { transform: translateX(-100px) translateY(0) rotate(0deg); }
   50% { transform: translateX(110vw) translateY(-50px) rotate(15deg); }
   100% { transform: translateX(-100px) translateY(0) rotate(0deg); }
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .thought-section {
-    padding: 40px 20px;
-  }
-  .video-wrap iframe {
-    height: 250px;
-  }
-  .thought-section h2 {
-    font-size: 1.6rem;
-  }
+/* Footer */
+.site-foot{ text-align:center; color: rgba(190,200,255,0.6); padding:28px 16px; z-index:10 }
 
+/* Responsive */
+@media (max-width:920px){
+  .container{ padding:36px 16px 80px }
+  .glass-card{ padding:20px }
+}
+@media (max-width:520px){
+  .site-nav{ display:none }
+  .card-head h1, .glass-card h2{ font-size:1.4rem }
+  .lede, .glass-card p{ font-size:.98rem }
 }
