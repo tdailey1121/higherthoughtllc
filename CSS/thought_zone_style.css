@@ -1,15 +1,78 @@
-/* Base & Reset */
-body, h1, h2, h3, p, ul {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Ethereal About page styles */
+:root{
+  --bg-1: #070814;
+  --bg-2: #0b0f1a;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.035);
+  --accent: rgba(132, 145, 255, 0.95);
+  --muted: rgba(210,220,255,0.8);
+  --card-max: 920px;
+  --blur: 18px;
+  --shadow: 0 12px 40px rgba(8,10,20,0.6);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
 }
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #0c0020;
-  color: #fff;
-  overflow-x: hidden;
+
+/* base reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--muted);
+  background:
+    radial-gradient(1200px 600px at 10% 20%, rgba(70,80,140,0.08), transparent 12%),
+    radial-gradient(900px 500px at 85% 80%, rgba(100,60,140,0.06), transparent 14%),
+    linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  min-height:100dvh;
 }
+
+/* Top bar */
+.topbar{
+  position:sticky; top:0; z-index:30;
+  display:flex; gap:12px; align-items:center; justify-content:space-between;
+  padding:12px 18px; backdrop-filter: blur(6px) saturate(1.05);
+  background: linear-gradient(180deg, rgba(6,8,14,0.35), rgba(6,8,14,0.12));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.logo-link img{border-radius:12px; display:block}
+.site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:18px; align-items:center}
+.site-nav a{color:var(--muted); text-decoration:none; font-weight:500; font-size:0.95rem; padding:6px 8px; border-radius:8px}
+.site-nav a.active, .site-nav a[aria-current="page"]{color:var(--accent); background: rgba(68,81,255,0.06)}
+
+/* background layers */
+.bg-layer{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+}
+
+/* subtle star texture layer - use a low-contrast svg */
+.bg-layer.stars{
+  background-image: url('../Assets/soft-stars.svg');
+  background-size: cover;
+  opacity:0.14;
+  transform: translateZ(0);
+  mix-blend-mode: screen;
+  filter: blur(0.6px) saturate(1.1);
+}
+
+/* floating soft orbs */
+.bg-layer.orbs{ display:block; }
+.orb{
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(30px) saturate(1.1);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+.orb-1{ width:260px; height:260px; left:6%; top:18%; background: radial-gradient(circle at 35% 30%, rgba(140,170,255,0.95), rgba(90,80,200,0.12)); animation: float1 10s ease-in-out infinite; }
+.orb-2{ width:180px; height:180px; right:8%; top:8%; background: radial-gradient(circle at 40% 35%, rgba(255,210,230,0.85), rgba(160,120,200,0.08)); animation: float2 12s ease-in-out infinite; }
+.orb-3{ width:140px; height:140px; left:44%; top:70%; background: radial-gradient(circle at 50% 50%, rgba(180,255,230,0.85), rgba(80,140,140,0.04)); animation: float3 14s ease-in-out infinite; }
+
+@keyframes float1{ 0%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+@keyframes float2{ 0%{transform:translateY(0) scale(.98)}50%{transform:translateY(-10px) scale(1.01)}100%{transform:translateY(0) scale(.98)}}
+@keyframes float3{ 0%{transform:translateY(0) scale(1)}50%{transform:translateY(-22px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
 
 /* Thought Zone Background */
 .thought-zone-bg {
@@ -144,4 +207,5 @@ body {
   .thought-section h2 {
     font-size: 1.6rem;
   }
+
 }
