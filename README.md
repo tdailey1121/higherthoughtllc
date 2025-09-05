@@ -14,6 +14,8 @@ This is an evolving website for **Higher Thought EnT**, a creative collective fo
 - CSS  
 - JavaScript  
 
+![Higher Thought Screenshot](Assets/images/higherthought.png)
+
 ## Preview
 Live draft available here: [Higher Thought EnT](https://tdailey1121.github.io/higherthoughtllc/)  
 
