@@ -1,4 +1,3 @@
-# higherthoughtllc
 # Higher Thought EnT Website
 
 ## Purpose
